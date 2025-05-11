@@ -17,8 +17,7 @@ bool mover_cima(int mat[4][4]){
  }
 }
 
-bool mover_baixo(int mat[4][4]){
- int i =0 , j = 0;
+bool mover_baixo(int mat[4][4]){ // ta meio bugado arrumar depois
   int aux;
     
    for(int i = 0; i < 4; i++ ){
@@ -35,6 +34,39 @@ bool mover_baixo(int mat[4][4]){
     
 }
 
+bool mover_esquerda( int matriz[4][4]){
+  int aux;
+   
+   for(int i = 0; i < 4; i++ ){
+      for(int j = 0; j < 4; j++){
+         if(matriz[i][j] == 0 && matriz[i][j] != matriz[i][0] ){
+            aux = matriz[i][j-1];
+             matriz[i][j-1] = matriz[i][j];
+             matriz[i][j] = aux;
+         }else{
+            
+        }
+    }
+ }
+    
+}   
+
+bool mover_direita(int matriz[4][4]){
+   int aux;
+   
+   for(int i = 0; i < 4; i++ ){
+      for(int j = 0; j < 4; j++){
+         if(matriz[i][j] == 0 && matriz[i][j] != matriz[i][3] ){
+            aux = matriz[i][j+1];
+             matriz[i][j+1] = matriz[i][j];
+             matriz[i][j] = aux;
+         }else{
+            
+        }
+    }
+ }  
+}
+
 void imprimir_matriz( int matriz[4][4]){
  
  for(int i = 0; i < 4; i++ ){
@@ -46,6 +78,8 @@ void imprimir_matriz( int matriz[4][4]){
 }
 
 int main(){
+  int fim = true;
+  char resposta;
   
   int matriz[4][4] = {
         {1, 2, 3, 4},
@@ -53,14 +87,37 @@ int main(){
         {9, 10, 11, 12},
         {13, 14, 6, 15}
     };
-
-
-    imprimir_matriz(matriz);
-    printf("\n"); 
-    mover_cima(matriz);
-    printf("\n"); 
-    imprimir_matriz(matriz);
-      printf("\n"); https
-      mover_baixo(matriz);
+ 
+ imprimir_matriz(matriz);
+while(fim){
+printf("digite algo w s a d\n");
+scanf("%c",&resposta);
+ 
+     switch(resposta){
+         case 'w':
+            mover_cima(matriz);        
+            imprimir_matriz(matriz);
+            printf("\n");
+         break;
+         
+         case 's':
+         mover_baixo(matriz);
          imprimir_matriz(matriz);
-}
+         printf("\n");
+         break;
+         
+         case 'a':
+         mover_esquerda(matriz);
+         imprimir_matriz(matriz);
+         printf("\n");
+         break; 
+         
+         case 'd':
+         mover_direita(matriz);
+         imprimir_matriz(matriz);
+         printf("\n");
+         break;
+     }
+    
+ }
+ }
