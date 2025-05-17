@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "teclado.c"
-#include "teclado.h"
 
 bool mover_cima(int mat[4][4]) {
     int aux;
     for (int j = 0; j < 4; j++) {
-        for (int i = 1; i < 4; i++) {  
+        for (int i = 1; i < 4; i++) {  // Começar de 1 para evitar acessar índice negativo
             if (mat[i][j] == 0) {
                 aux = mat[i - 1][j];
                 mat[i - 1][j] = mat[i][j];
@@ -20,7 +18,7 @@ bool mover_cima(int mat[4][4]) {
 bool mover_baixo(int mat[4][4]) {
     int aux;
     for (int j = 0; j < 4; j++) {
-        for (int i = 2; i >= 0; i--) {  
+        for (int i = 2; i >= 0; i--) {  // Começar de 2 para evitar acessar fora do limite
             if (mat[i][j] == 0) {
                 aux = mat[i + 1][j];
                 mat[i + 1][j] = mat[i][j];
@@ -34,7 +32,7 @@ bool mover_baixo(int mat[4][4]) {
 bool mover_esquerda(int matriz[4][4]) {
     int aux;
     for (int i = 0; i < 4; i++) {
-        for (int j = 1; j < 4; j++) {  
+        for (int j = 1; j < 4; j++) {  // Começar de 1 para evitar acessar índice negativo
             if (matriz[i][j] == 0) {
                 aux = matriz[i][j - 1];
                 matriz[i][j - 1] = matriz[i][j];
@@ -48,7 +46,7 @@ bool mover_esquerda(int matriz[4][4]) {
 bool mover_direita(int matriz[4][4]) {
     int aux;
     for (int i = 0; i < 4; i++) {
-        for (int j = 2; j >= 0; j--) { 
+        for (int j = 2; j >= 0; j--) {  // Começar de 2 para evitar acessar fora do limite
             if (matriz[i][j] == 0) {
                 aux = matriz[i][j + 1];
                 matriz[i][j + 1] = matriz[i][j];
@@ -59,72 +57,67 @@ bool mover_direita(int matriz[4][4]) {
     return true;
 }
 
-void imprimir_matriz( int matriz[4][4]){
- 
- for(int i = 0; i < 4; i++ ){
-    for(int j = 0; j < 4; j++){
-        printf(" %d ", matriz[i][j]);
-    }
-    printf("\n"); 
- }    
-}
-bool ganhou(int matriz[4][4]){
-   
-     int matri_certo[4][4] = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,0}};
-     int certos = 0;
-     
-    for(int i = 0; i < 4; i++ ){
-      for(int j = 0; j < 4; j++){
-      if(matri_certo[i][j] == matriz[i][j]){
-        certos = certos+1;
-   
+void imprimir_matriz(int matriz[4][4]) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf(" %d ", matriz[i][j]);
+        }
+        printf("\n");
     }
 }
+
+bool ganhou(int matriz[4][4]) {
+    int matri_certo[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+    int certos = 0;
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (matri_certo[i][j] == matriz[i][j]) {
+                certos++;
+            }
+        }
+    }
+
+    return certos == 15;  // Se acertou 15 posições, o jogo terminou
 }
-    return certos == 15;
-}
-int main(){
-  int fim = true;
-  char resposta;
-  
-  int matriz[4][4] = {
+
+int main() {
+    char resposta;
+    int matriz[4][4] = {
         {1, 2, 3, 4},
         {5, 0, 7, 8},
         {9, 10, 11, 12},
         {13, 14, 6, 15}
     };
- void tec_inicia();
- imprimir_matriz(matriz);
-while(!ganhou(matriz)){
-printf("digite algo w s a d\n");
-scanf("%c",&resposta);
- 
-     switch(resposta){
-         case 'w':
-            mover_cima(matriz);        
-            imprimir_matriz(matriz);
-            printf("\n");
-         break;
-         
-         case 's':
-         mover_baixo(matriz);
-         imprimir_matriz(matriz);
-         printf("\n");
-         break;
-         
-         case 'a':
-         mover_esquerda(matriz);
-         imprimir_matriz(matriz);
-         printf("\n");
-         break; 
-         
-         case 'd':
-         mover_direita(matriz);
-         imprimir_matriz(matriz);
-         printf("\n");
-         break;
-     }
-    
- }
- void tec_fim();
- }
+
+    imprimir_matriz(matriz);
+
+    while (!ganhou(matriz)) {  // Corrigi a condição para continuar até ganhar
+        printf("Digite algo (w, s, a, d): ");
+        scanf(" %c", &resposta);  // Adicionei o espaço antes de %c para capturar corretamente a entrada
+
+        switch (resposta) {
+            case 'w':
+                mover_cima(matriz);
+                break;
+            case 's':
+                mover_baixo(matriz);
+                break;
+            case 'a':
+                mover_esquerda(matriz);
+                break;
+            case 'd':
+                mover_direita(matriz);
+                break;
+            default:
+                printf("Comando inválido!\n");
+                continue;
+        }
+
+        imprimir_matriz(matriz);
+        printf("\n");
+    }
+
+    printf("Você ganhou!\n");
+    return 0;
+}
