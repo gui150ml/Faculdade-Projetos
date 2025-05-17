@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "teclado.h"  // Incluindo apenas o cabeçalho, não é necessário incluir o .c
+#include "teclado.h"
+#include "teclado.c" // Incluindo apenas o cabeçalho, não é necessário incluir o .c
 
 // Funções de movimentação
 bool mover_cima(int mat[4][4]) {
