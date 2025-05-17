@@ -97,6 +97,7 @@ int main() {
     while (!ganhou(matriz)) {  // Loop até o jogo ser ganho
         tecla = tec_tecla();  // Captura a tecla pressionada
 
+        // Processa apenas as teclas de direção
         switch (tecla) {
             case T_CIMA:
                 mover_cima(matriz);
@@ -110,8 +111,12 @@ int main() {
             case T_DIREITA:
                 mover_direita(matriz);
                 break;
+            case T_NADA:
+                // Nenhuma tecla foi pressionada
+                continue;
             default:
-                // Nenhuma tecla válida foi pressionada, então ignoramos
+                // Se uma tecla inválida for pressionada, podemos ignorá-la
+                printf("Tecla inválida! Pressione uma tecla de direção (setas).\n");
                 continue;
         }
 
