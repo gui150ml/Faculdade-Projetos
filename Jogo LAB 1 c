@@ -94,31 +94,32 @@ int main(){
         {13, 14, 6, 15}
     };
  void tec_inicia();
+ tec = tec_tecla();
  imprimir_matriz(matriz);
 while(!ganhou(matriz)){
 printf("digite algo w s a d\n");
-scanf("%c",&resposta);
+
  
      switch(resposta){
-         case 'w':
+         case T_CIMA:
             mover_cima(matriz);        
             imprimir_matriz(matriz);
             printf("\n");
          break;
          
-         case 's':
+         case T_BAIXO:
          mover_baixo(matriz);
          imprimir_matriz(matriz);
          printf("\n");
          break;
          
-         case 'a':
+         case T_ESQUERDA:
          mover_esquerda(matriz);
          imprimir_matriz(matriz);
          printf("\n");
          break; 
          
-         case 'd':
+         case T_DIREITA:
          mover_direita(matriz);
          imprimir_matriz(matriz);
          printf("\n");
