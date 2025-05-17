@@ -84,10 +84,9 @@ bool ganhou(int matriz[4][4]) {
     }
     return certos == 15;  // Se todos os números estiverem corretos (exceto o 0), o jogo acabou
 }
-
 int main() {
     int fim = 1;
-    char resposta;
+    tecla_t tec; // Alterado de char para tecla_t
 
     int matriz[4][4] = {
         {1, 2, 3, 4},
@@ -102,7 +101,7 @@ int main() {
     // Loop principal do jogo
     while (!ganhou(matriz)) {
         // Captura a tecla pressionada
-        tecla_t tec = tec_tecla();
+        tec = tec_tecla(); // Atualizando a captura da tecla
 
         // Se o usuário pressionou a tecla de "fim" (END), o jogo termina
         if (tec == T_END) {
@@ -130,7 +129,6 @@ int main() {
         // Imprime a matriz após o movimento
         imprimir_matriz(matriz);
         printf("\n");
-
     }
 
     // Finaliza a leitura do teclado
@@ -138,3 +136,4 @@ int main() {
 
     return 0;
 }
+
