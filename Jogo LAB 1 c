@@ -6,7 +6,7 @@
 bool mover_cima(int mat[4][4]) {
     int aux;
     for (int j = 0; j < 4; j++) {
-        for (int i = 1; i < 4; i++) {  // Começar de 1 para evitar acessar índice negativo
+        for (int i = 1; i < 4; i++) {  
             if (mat[i][j] == 0) {
                 aux = mat[i - 1][j];
                 mat[i - 1][j] = mat[i][j];
@@ -20,7 +20,7 @@ bool mover_cima(int mat[4][4]) {
 bool mover_baixo(int mat[4][4]) {
     int aux;
     for (int j = 0; j < 4; j++) {
-        for (int i = 2; i >= 0; i--) {  // Começar de 2 para evitar acessar fora do limite
+        for (int i = 2; i >= 0; i--) {  
             if (mat[i][j] == 0) {
                 aux = mat[i + 1][j];
                 mat[i + 1][j] = mat[i][j];
@@ -34,7 +34,7 @@ bool mover_baixo(int mat[4][4]) {
 bool mover_esquerda(int matriz[4][4]) {
     int aux;
     for (int i = 0; i < 4; i++) {
-        for (int j = 1; j < 4; j++) {  // Começar de 1 para evitar acessar índice negativo
+        for (int j = 1; j < 4; j++) {  
             if (matriz[i][j] == 0) {
                 aux = matriz[i][j - 1];
                 matriz[i][j - 1] = matriz[i][j];
@@ -48,7 +48,7 @@ bool mover_esquerda(int matriz[4][4]) {
 bool mover_direita(int matriz[4][4]) {
     int aux;
     for (int i = 0; i < 4; i++) {
-        for (int j = 2; j >= 0; j--) {  // Começar de 2 para evitar acessar fora do limite
+        for (int j = 2; j >= 0; j--) { 
             if (matriz[i][j] == 0) {
                 aux = matriz[i][j + 1];
                 matriz[i][j + 1] = matriz[i][j];
