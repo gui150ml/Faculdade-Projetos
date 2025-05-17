@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "teclado.c"
-#include "teclado.h"
+#include "teclado.h"  // Incluindo apenas o cabeçalho, não é necessário incluir o .c
 
+// Funções de movimentação
 bool mover_cima(int mat[4][4]) {
     int aux;
     for (int j = 0; j < 4; j++) {
@@ -59,73 +59,81 @@ bool mover_direita(int matriz[4][4]) {
     return true;
 }
 
-void imprimir_matriz( int matriz[4][4]){
- 
- for(int i = 0; i < 4; i++ ){
-    for(int j = 0; j < 4; j++){
-        printf(" %d ", matriz[i][j]);
-    }
-    printf("\n"); 
- }    
-}
-bool ganhou(int matriz[4][4]){
-   
-     int matri_certo[4][4] = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,0}};
-     int certos = 0;
-     
-    for(int i = 0; i < 4; i++ ){
-      for(int j = 0; j < 4; j++){
-      if(matri_certo[i][j] == matriz[i][j]){
-        certos = certos+1;
-   
+// Função para imprimir a matriz
+void imprimir_matriz(int matriz[4][4]) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf(" %d ", matriz[i][j]);
+        }
+        printf("\n");
     }
 }
+
+// Função para verificar se o jogo foi ganho
+bool ganhou(int matriz[4][4]) {
+    int matri_certo[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+    int certos = 0;
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (matri_certo[i][j] == matriz[i][j]) {
+                certos++;
+            }
+        }
+    }
+    return certos == 15;  // Se todos os números estiverem corretos (exceto o 0), o jogo acabou
 }
-    return certos == 15;
-}
-int main(){
-  int fim = true;
-  char resposta;
-  
-  int matriz[4][4] = {
+
+int main() {
+    int fim = 1;
+    char resposta;
+
+    int matriz[4][4] = {
         {1, 2, 3, 4},
         {5, 0, 7, 8},
         {9, 10, 11, 12},
         {13, 14, 6, 15}
     };
- void tec_inicia();
- tec = tec_tecla();
- imprimir_matriz(matriz);
-while(!ganhou(matriz)){
-printf("digite algo w s a d\n");
 
- 
-     switch(resposta){
-         case T_CIMA:
-            mover_cima(matriz);        
-            imprimir_matriz(matriz);
-            printf("\n");
-         break;
-         
-         case T_BAIXO:
-         mover_baixo(matriz);
-         imprimir_matriz(matriz);
-         printf("\n");
-         break;
-         
-         case T_ESQUERDA:
-         mover_esquerda(matriz);
-         imprimir_matriz(matriz);
-         printf("\n");
-         break; 
-         
-         case T_DIREITA:
-         mover_direita(matriz);
-         imprimir_matriz(matriz);
-         printf("\n");
-         break;
-     }
-    
- }
- void tec_fim();
- }
+    // Inicializa a leitura do teclado
+    tec_inicia();
+
+    // Loop principal do jogo
+    while (!ganhou(matriz)) {
+        // Captura a tecla pressionada
+        tecla_t tec = tec_tecla();
+
+        // Se o usuário pressionou a tecla de "fim" (END), o jogo termina
+        if (tec == T_END) {
+            break;
+        }
+
+        // Movimenta a peça dependendo da tecla pressionada
+        switch (tec) {
+            case T_CIMA:
+                mover_cima(matriz);
+                break;
+            case T_BAIXO:
+                mover_baixo(matriz);
+                break;
+            case T_ESQUERDA:
+                mover_esquerda(matriz);
+                break;
+            case T_DIREITA:
+                mover_direita(matriz);
+                break;
+            default:
+                break;
+        }
+
+        // Imprime a matriz após o movimento
+        imprimir_matriz(matriz);
+        printf("\n");
+
+    }
+
+    // Finaliza a leitura do teclado
+    tec_fim();
+
+    return 0;
+}
