@@ -2,11 +2,13 @@
 #include <stdbool.h>
 #include "teclado.h"  // Inclui a biblioteca do teclado
 
+// Função para mover os números para cima
 bool mover_cima(int mat[4][4]) {
     int aux;
     for (int j = 0; j < 4; j++) {
-        for (int i = 1; i < 4; i++) {
+        for (int i = 1; i < 4; i++) {  // Começar de 1 para evitar acessar índice negativo
             if (mat[i][j] == 0) {
+                // Mover número para cima
                 aux = mat[i - 1][j];
                 mat[i - 1][j] = mat[i][j];
                 mat[i][j] = aux;
@@ -16,11 +18,13 @@ bool mover_cima(int mat[4][4]) {
     return true;
 }
 
+// Função para mover os números para baixo
 bool mover_baixo(int mat[4][4]) {
     int aux;
     for (int j = 0; j < 4; j++) {
-        for (int i = 2; i >= 0; i--) {
+        for (int i = 2; i >= 0; i--) {  // Começar de 2 para evitar acessar fora do limite
             if (mat[i][j] == 0) {
+                // Mover número para baixo
                 aux = mat[i + 1][j];
                 mat[i + 1][j] = mat[i][j];
                 mat[i][j] = aux;
@@ -30,50 +34,54 @@ bool mover_baixo(int mat[4][4]) {
     return true;
 }
 
-bool mover_esquerda(int matriz[4][4]) {
+// Função para mover os números para a esquerda
+bool mover_esquerda(int mat[4][4]) {
     int aux;
     for (int i = 0; i < 4; i++) {
-        for (int j = 1; j < 4; j++) {
-            if (matriz[i][j] == 0) {
-                aux = matriz[i][j - 1];
-                matriz[i][j - 1] = matriz[i][j];
-                matriz[i][j] = aux;
+        for (int j = 1; j < 4; j++) {  // Começar de 1 para evitar acessar índice negativo
+            if (mat[i][j] == 0) {
+                // Mover número para a esquerda
+                aux = mat[i][j - 1];
+                mat[i][j - 1] = mat[i][j];
+                mat[i][j] = aux;
             }
         }
     }
     return true;
 }
 
-bool mover_direita(int matriz[4][4]) {
+// Função para mover os números para a direita
+bool mover_direita(int mat[4][4]) {
     int aux;
     for (int i = 0; i < 4; i++) {
-        for (int j = 2; j >= 0; j--) {
-            if (matriz[i][j] == 0) {
-                aux = matriz[i][j + 1];
-                matriz[i][j + 1] = matriz[i][j];
-                matriz[i][j] = aux;
+        for (int j = 2; j >= 0; j--) {  // Começar de 2 para evitar acessar fora do limite
+            if (mat[i][j] == 0) {
+                // Mover número para a direita
+                aux = mat[i][j + 1];
+                mat[i][j + 1] = mat[i][j];
+                mat[i][j] = aux;
             }
         }
     }
     return true;
 }
 
-void imprimir_matriz(int matriz[4][4]) {
+void imprimir_matriz(int mat[4][4]) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            printf(" %d ", matriz[i][j]);
+            printf(" %d ", mat[i][j]);
         }
         printf("\n");
     }
 }
 
-bool ganhou(int matriz[4][4]) {
+bool ganhou(int mat[4][4]) {
     int matri_certo[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
     int certos = 0;
 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            if (matri_certo[i][j] == matriz[i][j]) {
+            if (matri_certo[i][j] == mat[i][j]) {
                 certos++;
             }
         }
