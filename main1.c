@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "teclado.h"
+#include "teclado.h"  // Inclui a biblioteca do teclado
 
-// Funções de movimentação
 bool mover_cima(int mat[4][4]) {
     int aux;
     for (int j = 0; j < 4; j++) {
@@ -59,7 +58,6 @@ bool mover_direita(int matriz[4][4]) {
     return true;
 }
 
-// Função para imprimir a matriz
 void imprimir_matriz(int matriz[4][4]) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
@@ -69,7 +67,6 @@ void imprimir_matriz(int matriz[4][4]) {
     }
 }
 
-// Função para verificar se o jogo foi ganho
 bool ganhou(int matriz[4][4]) {
     int matri_certo[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
     int certos = 0;
@@ -81,13 +78,12 @@ bool ganhou(int matriz[4][4]) {
             }
         }
     }
-    return certos == 15;  // Se todos os números estiverem corretos (exceto o 0), o jogo acabou
+
+    return certos == 15;
 }
 
 int main() {
-    int fim = 1;
-    tecla_t tec; // Mudança de char para tecla_t
-
+    tecla_t tecla;  // Variável para armazenar a tecla pressionada
     int matriz[4][4] = {
         {1, 2, 3, 4},
         {5, 0, 7, 8},
@@ -95,48 +91,35 @@ int main() {
         {13, 14, 6, 15}
     };
 
-    // Inicializa a leitura do teclado
-    tec_inicia();
+    tec_inicia();  // Inicializa o teclado em modo cru
+    imprimir_matriz(matriz);
 
-    // Loop principal do jogo
-    while (!ganhou(matriz)) {
-        // Captura a tecla pressionada
-        tec = tec_tecla(); // Captura a tecla pressionada
+    while (!ganhou(matriz)) {  // Loop até o jogo ser ganho
+        tecla = tec_tecla();  // Captura a tecla pressionada
 
-        // Verifica se alguma tecla foi pressionada (não permite movimento contínuo)
-        if (tec != T_NADA) {
-            // Se o usuário pressionou a tecla de "fim" (END), o jogo termina
-            if (tec == T_END) {
+        switch (tecla) {
+            case T_CIMA:
+                mover_cima(matriz);
                 break;
-            }
-
-            // Movimenta a peça dependendo da tecla pressionada
-            switch (tec) {
-                case T_CIMA:
-                    mover_cima(matriz);
-                    break;
-                case T_BAIXO:
-                    mover_baixo(matriz);
-                    break;
-                case T_ESQUERDA:
-                    mover_esquerda(matriz);
-                    break;
-                case T_DIREITA:
-                    mover_direita(matriz);
-                    break;
-                default:
-                    break;
-            }
-
-            // Imprime a matriz após o movimento
-            imprimir_matriz(matriz);
-            printf("\n");
+            case T_BAIXO:
+                mover_baixo(matriz);
+                break;
+            case T_ESQUERDA:
+                mover_esquerda(matriz);
+                break;
+            case T_DIREITA:
+                mover_direita(matriz);
+                break;
+            default:
+                // Nenhuma tecla válida foi pressionada, então ignoramos
+                continue;
         }
 
+        imprimir_matriz(matriz);  // Imprime a matriz após o movimento
+        printf("\n");
     }
 
-    // Finaliza a leitura do teclado
-    tec_fim();
-
+    printf("Você ganhou!\n");
+    tec_fim();  // Finaliza o teclado em modo cru
     return 0;
 }
