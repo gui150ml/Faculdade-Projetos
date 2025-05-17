@@ -103,32 +103,36 @@ int main() {
         // Captura a tecla pressionada
         tec = tec_tecla(); // Captura a tecla pressionada
 
-        // Se o usuário pressionou a tecla de "fim" (END), o jogo termina
-        if (tec == T_END) {
-            break;
+        // Verifica se alguma tecla foi pressionada (não permite movimento contínuo)
+        if (tec != T_NADA) {
+            // Se o usuário pressionou a tecla de "fim" (END), o jogo termina
+            if (tec == T_END) {
+                break;
+            }
+
+            // Movimenta a peça dependendo da tecla pressionada
+            switch (tec) {
+                case T_CIMA:
+                    mover_cima(matriz);
+                    break;
+                case T_BAIXO:
+                    mover_baixo(matriz);
+                    break;
+                case T_ESQUERDA:
+                    mover_esquerda(matriz);
+                    break;
+                case T_DIREITA:
+                    mover_direita(matriz);
+                    break;
+                default:
+                    break;
+            }
+
+            // Imprime a matriz após o movimento
+            imprimir_matriz(matriz);
+            printf("\n");
         }
 
-        // Movimenta a peça dependendo da tecla pressionada
-        switch (tec) {
-            case T_CIMA:
-                mover_cima(matriz);
-                break;
-            case T_BAIXO:
-                mover_baixo(matriz);
-                break;
-            case T_ESQUERDA:
-                mover_esquerda(matriz);
-                break;
-            case T_DIREITA:
-                mover_direita(matriz);
-                break;
-            default:
-                break;
-        }
-
-        // Imprime a matriz após o movimento
-        imprimir_matriz(matriz);
-        printf("\n");
     }
 
     // Finaliza a leitura do teclado
