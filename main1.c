@@ -153,7 +153,7 @@ int main() {
     vid_pos(pos);
     vid_cor_texto((cor_t){0, 255, 0});
     vid_cor_fundo(COR_FUNDO);
-    vid_imps("Parabéns, você venceu!");
+    vid_imps("Vitoria!");
 
     vid_atualiza();
     tec_fim();
