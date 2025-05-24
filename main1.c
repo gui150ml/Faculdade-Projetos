@@ -1,138 +1,163 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "teclado.h"  // Inclui a biblioteca do teclado
+#include "teclado.h"
+#include "video.h"
 
-// Função para mover os números para cima
-bool mover_cima(int mat[4][4]) {
-    int aux;
-    for (int j = 0; j < 4; j++) {
-        for (int i = 1; i < 4; i++) {  // Começar de 1 para evitar acessar índice negativo
-            if (mat[i][j] == 0) {
-                // Mover número para cima
-                aux = mat[i - 1][j];
-                mat[i - 1][j] = mat[i][j];
-                mat[i][j] = aux;
-            }
-        }
+
+cor_t COR_TEXTO = {10, 5, 25};    
+cor_t COR_FUNDO = {50, 30, 30};       
+cor_t COR_CELULA = {255, 255, 0};       
+cor_t COR_VAZIA = {0, 0, 0};          
+
+//aqui vai desenha o tabuleiro
+void desenhar_tela(int mat[4][4]) {
+    vid_limpa();
+
+    
+    vid_cor_fundo(COR_FUNDO);
+    vid_cor_texto(COR_FUNDO);  
+    vid_pos((posicao_t){0, 0});
+    for (int i = 0; i < 30; i++) {
+        vid_imps("                                                  \n");
     }
-    return true;
-}
 
-// Função para mover os números para baixo
-bool mover_baixo(int mat[4][4]) {
-    int aux;
-    for (int j = 0; j < 4; j++) {
-        for (int i = 2; i >= 0; i--) {  // Começar de 2 para evitar acessar fora do limite
-            if (mat[i][j] == 0) {
-                // Mover número para baixo
-                aux = mat[i + 1][j];
-                mat[i + 1][j] = mat[i][j];
-                mat[i][j] = aux;
-            }
-        }
-    }
-    return true;
-}
-
-// Função para mover os números para a esquerda
-bool mover_esquerda(int mat[4][4]) {
-    int aux;
-    for (int i = 0; i < 4; i++) {
-        for (int j = 1; j < 4; j++) {  // Começar de 1 para evitar acessar índice negativo
-            if (mat[i][j] == 0) {
-                // Mover número para a esquerda
-                aux = mat[i][j - 1];
-                mat[i][j - 1] = mat[i][j];
-                mat[i][j] = aux;
-            }
-        }
-    }
-    return true;
-}
-
-// Função para mover os números para a direita
-bool mover_direita(int mat[4][4]) {
-    int aux;
-    for (int i = 0; i < 4; i++) {
-        for (int j = 2; j >= 0; j--) {  // Começar de 2 para evitar acessar fora do limite
-            if (mat[i][j] == 0) {
-                // Mover número para a direita
-                aux = mat[i][j + 1];
-                mat[i][j + 1] = mat[i][j];
-                mat[i][j] = aux;
-            }
-        }
-    }
-    return true;
-}
-
-void imprimir_matriz(int mat[4][4]) {
+    //o Tabuleiro
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            printf(" %d ", mat[i][j]);
+            posicao_t pos = {5 + i * 2, 10 + j * 6};
+            vid_pos(pos);
+
+            if (mat[i][j] == 0) {
+                vid_cor_fundo(COR_VAZIA);
+                vid_cor_texto(COR_VAZIA);
+                vid_imps("      ");
+            } else {
+                vid_cor_fundo(COR_CELULA);
+                vid_cor_texto(COR_TEXTO);
+                char buffer[8];
+                snprintf(buffer, sizeof(buffer), " %2d   ", mat[i][j]);
+                vid_imps(buffer);
+            }
         }
-        printf("\n");
     }
+
+    vid_atualiza();
 }
 
+//===================== funções de movimento =====================================
+bool mover_cima(int mat[4][4]) {
+    for (int j = 0; j < 4; j++) {
+        for (int i = 1; i < 4; i++) {
+            if (mat[i][j] == 0) {
+                int aux = mat[i - 1][j];
+                mat[i - 1][j] = 0;
+                mat[i][j] = aux;
+            }
+        }
+    }
+    return true;
+}
+
+bool mover_baixo(int mat[4][4]) {
+    for (int j = 0; j < 4; j++) {
+        for (int i = 2; i >= 0; i--) {
+            if (mat[i][j] == 0) {
+                int aux = mat[i + 1][j];
+                mat[i + 1][j] = 0;
+                mat[i][j] = aux;
+            }
+        }
+    }
+    return true;
+}
+
+bool mover_esquerda(int mat[4][4]) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 1; j < 4; j++) {
+            if (mat[i][j] == 0) {
+                int aux = mat[i][j - 1];
+                mat[i][j - 1] = 0;
+                mat[i][j] = aux;
+            }
+        }
+    }
+    return true;
+}
+
+bool mover_direita(int mat[4][4]) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 2; j >= 0; j--) {
+            if (mat[i][j] == 0) {
+                int aux = mat[i][j + 1];
+                mat[i][j + 1] = 0;
+                mat[i][j] = aux;
+            }
+        }
+    }
+    return true;
+}
+
+//vai ver se ganhou
 bool ganhou(int mat[4][4]) {
-    int matri_certo[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+    int correto[4][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 0}
+    };
     int certos = 0;
 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            if (matri_certo[i][j] == mat[i][j]) {
+            if (mat[i][j] == correto[i][j]) {
                 certos++;
             }
         }
     }
 
-    return certos == 15;
+    return certos == 16;
 }
 
+
 int main() {
-    tecla_t tecla;  // Variável para armazenar a tecla pressionada
+    tecla_t tecla;
     int matriz[4][4] = {
         {1, 2, 3, 4},
-        {5, 0, 7, 8},
+        {5, 6, 7, 8},
         {9, 10, 11, 12},
-        {13, 14, 6, 15}
+        {13, 14, 0, 15}
     };
 
-    tec_inicia();  // Inicializa o teclado em modo cru
-    imprimir_matriz(matriz);
+    tec_inicia();
+    vid_inicia();
 
-    while (!ganhou(matriz)) {  // Loop até o jogo ser ganho
-        tecla = tec_tecla();  // Captura a tecla pressionada
+    desenhar_tela(matriz);
 
-        // Processa apenas as teclas de direção
+    while (!ganhou(matriz)) {
+        tecla = tec_tecla();
+
         switch (tecla) {
-            case T_CIMA:
-                mover_cima(matriz);
-                break;
-            case T_BAIXO:
-                mover_baixo(matriz);
-                break;
-            case T_ESQUERDA:
-                mover_esquerda(matriz);
-                break;
-            case T_DIREITA:
-                mover_direita(matriz);
-                break;
-            case T_NADA:
-                // Nenhuma tecla foi pressionada
-                continue;
-            default:
-                // Se uma tecla inválida for pressionada, podemos ignorá-la
-                printf("Tecla inválida! Pressione uma tecla de direção (setas).\n");
-                continue;
+            case T_CIMA: mover_cima(matriz); break;
+            case T_BAIXO: mover_baixo(matriz); break;
+            case T_ESQUERDA: mover_esquerda(matriz); break;
+            case T_DIREITA: mover_direita(matriz); break;
+            case T_NADA: continue;
+            default: continue;
         }
 
-        imprimir_matriz(matriz);  // Imprime a matriz após o movimento
-        printf("\n");
+        desenhar_tela(matriz);
     }
 
-    printf("Você ganhou!\n");
-    tec_fim();  // Finaliza o teclado em modo cru
+
+    posicao_t pos = {15, 10};
+    vid_pos(pos);
+    vid_cor_texto((cor_t){0, 255, 0});
+    vid_cor_fundo(COR_FUNDO);
+    vid_imps("Parabéns, você venceu!");
+
+    vid_atualiza();
+    tec_fim();
+    vid_fim();
+
     return 0;
 }
