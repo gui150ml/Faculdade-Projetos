@@ -121,3 +121,138 @@ int main() {
     printf("Você ganhou!\n");
     return 0;
 }
+
+
+<html>
+    <head>
+        <title>Carros de Idosos</title>
+        <link rel="icon" type="image/png" href="https://th.bing.com/th/id/OIP.qtnkmxcvRkop2gfAjDrhqwHaE8?cb=iwp2&rs=1&pid=ImgDetMain">
+        <style>
+            p.three {
+                border-style: solid;
+                border-width: 25px 10px 4px 35px;
+            }
+            h1 {
+                font-size: 70px;
+                margin-left: 80px;
+                color: rgb(48, 111, 170);
+                text-shadow: 2px 1px 1px #9047e2;
+            }
+            body {
+                background-color: lightblue;
+            }
+        </style>
+    </head>
+    <body>
+         
+        <section id="top-5-jovem">
+            <h1>Top 5 Carros Fodas dos Anos 80/90 Para um Jovem de 20 Anos</h1>
+          
+
+        <h1>Monza de contrabando </h1>
+        <h2>Monza o Luxo dos anos 80</h2>
+        <p>O Chevrolet Monza foi um dos carros mais populares do Brasil nos anos 1980 e início dos 1990.<br> 
+            Lançado em 1982, era a versão nacional do Opel Ascona europeu. Ficou conhecido pelo conforto, desempenho e visual moderno para a época.</p>
+
+        <h2>Suas conquistas 🏆</h2>
+        <p>Foi Carro do Ano pela revista Autoesporte em 1983 e 1984.</p>
+        <p>Um dos sedãs mais vendidos do Brasil na década de 80.</p>
+        <p>Muito usado como carro executivo e por famílias de classe média.</p>
+
+        <img src="https://www.picellileiloes.com.br/arquivos/leiloes/lotes/imagens/5fbf92385900d.peg" alt="monza 85" width="800" height="800">
+
+        <h2>CARACTERÍSTICAS MARCANTES</h2>
+        <h3>
+            Motor 1.6, 1.8 e 2.0 (álcool ou gasolina).<br>
+            Versões: hatch, sedã e, mais tarde, com câmbio automático.<br>
+            Conforto acima da média: direção hidráulica, ar-condicionado e vidros elétricos, opcionais raros na época.<br>
+            Design elegante, inspirado nos modelos europeus.
+        </h3>
+
+        <h1>Fiat Tempra de mestre de obra</h1>
+        <img src="https://conteudo.imguol.com.br/c/entretenimento/29/2016/07/04/fiat-tempra-20-16v-1467681459712_1920x1080.png" alt="Fiat Tempra" width="800" height="800">
+
+        <h2>Resumo</h2>
+        <p>O <strong>Fiat Tempra</strong> foi um sedã médio fabricado entre 1990 e 1998. Lançado pela Fiat, o modelo combinava conforto, desempenho e tecnologia, sendo um dos mais modernos da sua época.</p>
+        <p>O Tempra se destacou ao ser um dos primeiros nacionais com motor 2.0 16V, oferecendo desempenho acima da média. Algumas versões chegaram a contar com airbag, o que era raríssimo para o Brasil nos anos 90.</p>
+
+        <h2>Suas conquistas 🏆</h2>
+        <p>Foi um dos primeiros carros nacionais com motor 16 válvulas.</p>
+        <p>Chegou a ter versão com airbag e freios ABS — raridade nos anos 90.</p>
+        <p>Um dos primeiros carros com painel digital no Brasil.</p>
+
+        <h2>Características</h2>
+        <ul>
+            <li>Motores: 1.6, 1.8 e 2.0 (com opção 16V)</li>
+            <li>Transmissão manual e automática</li>
+            <li>Itens de conforto: ar-condicionado, direção hidráulica, vidros elétricos</li>
+            <li>Design europeu e bom espaço interno</li>
+        </ul>
+
+        <h2>CARACTERÍSTICAS MARCANTES</h2>
+        <h3>
+            Motores modernos com boa performance: destaque para o 2.0 16V.<br>
+            Primeiro Fiat nacional com airbag e freios ABS em algumas versões.<br>
+            Acabamento interno sofisticado e painel digital em versões topo de linha.<br>
+            Visual elegante e aerodinâmico, inspirado em sedãs italianos.
+        </h3>
+
+        <h1>Ford Escort XR3</h1>
+        <img src="https://autoia.com.br/wp-content/uploads/2024/05/430433795_1077378663567373_6283143495198916479_n.webp" alt="Escort XR3" width="800" height="800">
+        <p>O Escort XR3 era o esportivo nacional da época, com visual agressivo, motor 1.6 ou 1.8 e câmbio de 5 marchas. Foi um símbolo de status nos anos 80 e chegou a receber edições conversíveis e até a versão “Formula” com acabamento exclusivo.</p>
+
+        <h2>Suas conquistas 🏆</h2>
+        <p>Ícone entre os jovens dos anos 80 e 90, considerado um esportivo acessível no Brasil.</p>
+        <p>Teve versão conversível lançada oficialmente pela fábrica — algo raro na época.</p>
+        <p>Participou de diversas provas de rally e velocidade.</p>
+
+        <h2>CARACTERÍSTICAS MARCANTES</h2>
+        <h3>
+            Motorizações 1.6 e 1.8 de bom desempenho.<br>
+            Versões conversíveis e esportivas com visual único.<br>
+            Painel esportivo, bancos com ótimo acabamento e volante exclusivo.<br>
+            Muito usado em rallys e corridas amadoras no Brasil.
+        </h3>
+
+        <h1>Chevrolet Omega (Milíciano)</h1>
+        <img src="https://i0.wp.com/retornar.com.br/wp-content/uploads/2023/02/image-68.png?ssl=1" alt="Omega" width="800" height="800">
+        <p>O Omega era o topo de linha da Chevrolet nos anos 90, equipado com motor 2.0, 2.2, 3.0 e até 4.1 em versões posteriores. Foi o carro oficial da presidência na época e recebeu diversos prêmios por conforto e desempenho.</p>
+
+        <h2>Suas conquistas 🏆</h2>
+        <p>Foi o carro presidencial oficial do Brasil no governo Itamar Franco.</p>
+        <p>Ganhou o prêmio de "Carro do Ano" pela Autoesporte em 1993.</p>
+        <p>Considerado referência em luxo e segurança nos anos 90.</p>
+
+        <h2>CARACTERÍSTICAS MARCANTES</h2>
+        <h3>
+            Motores potentes, incluindo versões com 6 cilindros e até 4.1 litros.<br>
+            Itens de luxo como bancos de couro, controle de tração e computador de bordo.<br>
+            Estabilidade e conforto de rodagem excepcionais para a época.<br>
+            Símbolo de status entre empresários e políticos.
+        </h3>
+
+        <h1>Belina de Frete</h1>
+        <img src="https://i.pinimg.com/736x/0d/5a/1b/0d5a1b48eb84dfd9bbb2ecb1985350c7.jpg" alt="Belina" width="800" height="800">
+        <p>A Ford Belina, especialmente na versão Del Rey Scala, era uma station wagon robusta e muito utilizada para transporte de carga leve e familiar. Usava motores 1.6 e 1.8 da linha CHT e AP, e se tornou um símbolo do frete nacional na década de 80.</p>
+
+        <h2>Suas conquistas 🏆</h2>
+        <p>Foi uma das peruas mais vendidas do Brasil nos anos 80.</p>
+        <p>Queridinha entre autônomos e comerciantes pelo espaço interno.</p>
+        <p>Participou de frotas públicas e serviços de entrega leve por todo o país.</p>
+
+        <h2>CARACTERÍSTICAS MARCANTES</h2>
+        <h3>
+            Motor CHT e posteriormente AP, conhecido pela robustez.<br>
+            Amplo espaço interno e bagageiro generoso.<br>
+            Visual quadradão típico dos anos 80.<br>
+            Muito usada em áreas rurais e no transporte leve urbano.
+        </h3>
+
+        <h1></h1>
+      <strong>Quer Saber como compra seu primeiro carro?
+            <br></strong>
+
+        <a href="https://www.youtube.com/watch?v=UsMnP3VKmJE&t=279s&pp=ygUcY29tbyBjb21wcmFyIHVtIGNhcnJvIHZlbGhvIA%3D%3D">Como comprar um carro velho</a>
+    </body>
+</html>
+
